@@ -127,6 +127,7 @@ class OverrideGSR : public WatchyGSR {
 
     void InsertDrawWatchStyle(uint8_t StyleID){
       if (StyleID == multimeterStyle){
+          OverrideDefaultMenu(true);
             if (SafeToDraw()){
                 if (meterSetting == TIME_MODE) drawTime();
                 if (meterSetting == DATE_MODE) drawDate();
@@ -164,8 +165,8 @@ class OverrideGSR : public WatchyGSR {
           Haptic = true;
           Refresh = true;
           return true;
-          break;
         case 2: //Back
+          Refresh = true;
           return true;
         case 3: //Up
           ShowDefaultMenu();
@@ -178,7 +179,6 @@ class OverrideGSR : public WatchyGSR {
           Haptic = true;
           Refresh = true;
           return true;
-          break;
       }
       return false;
   };
