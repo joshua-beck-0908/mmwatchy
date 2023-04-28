@@ -151,7 +151,7 @@ class OverrideGSR : public WatchyGSR {
     }
     
     void drawDate() {
-      drawNumber(WatchTime.Local.Day, WatchTime.Local.Month);
+      drawNumber(WatchTime.Local.Day, WatchTime.Local.Month + 1);
       return;
     }
     
