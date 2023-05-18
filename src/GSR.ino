@@ -9,7 +9,7 @@ enum meterSettings {
   DATE_MODE,
   TIME_MODE,
   OFF_MODE,
-  STOPWATCH_MODE,
+  STEP_MODE,
   LAST_MODE
 };
 
@@ -131,7 +131,7 @@ class OverrideGSR : public WatchyGSR {
             if (SafeToDraw()){
                 if (meterSetting == TIME_MODE) drawTime();
                 if (meterSetting == DATE_MODE) drawDate();
-                //if (meterSetting == STOPWATCH_MODE) drawStopwatch();
+                if (meterSetting == STEP_MODE) drawSteps();
             }
       }
     };
@@ -152,6 +152,12 @@ class OverrideGSR : public WatchyGSR {
     
     void drawDate() {
       drawNumber(WatchTime.Local.Day, WatchTime.Local.Month + 1);
+      return;
+    }
+    
+    void drawSteps() {
+      uint32_t steps = SBMA.getCounter();
+      drawNumber(steps / 1000, (steps % 1000) / 10);
       return;
     }
     
